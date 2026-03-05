@@ -2,13 +2,13 @@
 A lightweight browser consistency analysis engine that detects automation by analyzing HTTP request behaviour.
 
 The engine evaluates requests across multiple layers including:
-
+```
 Protocol Integrity
 Browser fingerprint consistency
 Header structure
 Request evasion techniques
 Payload anomalies
-
+```
 Each request is scored using an explainable risk scoring system that highlights the signals contributing to detection.
 
 # Why this project exists
