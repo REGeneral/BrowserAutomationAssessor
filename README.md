@@ -273,7 +273,7 @@ ASN and proxy intelligence integration
 ### Why this matters
 Modern abuse detection systems rely on multiple weak signals combined together. This project demonstrates how automated traffic can be detected through browser consistency analysis and protocol anomalies, even without external threat intelligence.
 
-This project explores how automated traffic can be indetified using browser consistency validation and protocl anomaly detection. It demonstrates practical familiarity with:
+This project explores how automated traffic can be identified using browser consistency validation and protocol anomaly detection. It demonstrates practical familiarity with:
 ```
 HTTP Protocol Behaviour
 Browser fingerprinting techniques
