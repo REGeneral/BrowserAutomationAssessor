@@ -11,14 +11,14 @@ Payload anomalies
 ```
 Each request is scored using an explainable risk scoring system that highlights the signals contributing to detection.
 
-# Why this project exists
+### Why this project exists
 Many bot detection systems rely heavily on IP reputation, ASN intelligence, or behavioural analysis.
 
 I built this project to focus on offline request analysis, demonstrating how automated traffic can be detected purely through browser consistency validation and protocol anomalies.
 
 The goal was to explore techniques used in bot mitigation, abuse detection, and web security systems.
 
-# Example Detection
+### Example Detection
 Example Malicious Request:
 
 URL Path:
@@ -68,11 +68,11 @@ Explanation output:
   }
 ```
 
-# Detection Signals
+### Detection Signals
 
 The engine currently evaluates requests using multiple independent signals.
 
-# Protocol Integrity
+### Protocol Integrity
 
 Detects inconsistencies in HTTP request construction.
 
@@ -81,7 +81,7 @@ Examples:
 Content-Length mismatch
 Malformed payload encoding
 ```
-# Browser Fingerprint Consistency
+### Browser Fingerprint Consistency
 
 Validates that the request actually behaves like the browser claims to be.
 
@@ -91,7 +91,7 @@ User-Agent vs Sec-ch-ua mismatch
 Incomplete client hint header clusters
 Header Structure Validation
 ```
-# Browsers send headers in predictable patterns and clusters.
+### Browsers send headers in predictable patterns and clusters.
 
 The engine evaluates:
 ```
@@ -99,7 +99,7 @@ Header casing anomalies
 Fetch metadata header clusters
 Header ordering patterns
 ```
-# Request Evasion Detection
+### Request Evasion Detection
 
 Identifies common request obfuscation techniques used in automation tools.
 
@@ -109,7 +109,7 @@ Percent encoded paths
 Double encoded payloads
 Traversal patterns
 ```
-# Payload Analysis
+### Payload Analysis
 
 Detects suspicious encoding patterns inside request payloads.
 
@@ -120,7 +120,7 @@ Double encoded payloads
 Base64 like payloads
 ```
 
-# Browser Profiles
+### Browser Profiles
 The engine evaluates requests against expected browser behavior using browser profiles.
 
 Current Profiles:
@@ -134,7 +134,7 @@ Header clusters
 Encoding capabilities
 Header patterns
 ```
-# Risk Scoring
+### Risk Scoring
 Signals are weighted and combined into a risk score between 0 and 100.
 
 Classification levels:
@@ -146,14 +146,50 @@ Classification levels:
 ```
 Each detection includes an explainable output highlighting the most significant signals.
 
-# Running the project
+### Running the project
 Example test execution:
 ```
 node test.js
 ```
-# Example output:
+### Example output:
 
 ```json
+==============================
+Suspicious bot request
+==============================
+{
+  "risk": 18,
+  "signals": [
+    {
+      "id": "fetch_metadata_cluster_invalid",
+      "weight": 8,
+      "evidence": "Sec-Fetch headers not grouped correctly"
+    },
+    {
+      "id": "non_standard_user_agent",
+      "weight": 10,
+      "evidence": "Mozilla/5.0"
+    }
+  ],
+  "explanation": {
+    "classification": "suspicious",
+    "summary": "Risk score 18/100 indicating suspicious.",
+    "topFindings": [
+      {
+        "signal": "non_standard_user_agent",
+        "reason": "Mozilla/5.0",
+        "weight": 10
+      },
+      {
+        "signal": "fetch_metadata_cluster_invalid",
+        "reason": "Sec-Fetch headers not grouped correctly",
+        "weight": 8
+      }
+    ],
+    "signalCount": 2
+  }
+}
+
 ==============================
 Clearly malicious request
 ==============================
@@ -225,7 +261,7 @@ Clearly malicious request
   }
 }
 ```
-# Future Improvements
+### Future Improvements
 Potential Extensions:
 ```
 TLS fingerprint validation (JA3/JA4 style detection)
@@ -234,10 +270,10 @@ Session consistency analysis
 Browser behaviour modeling
 ASN and proxy intelligence integration
 ```
-# Why this matters
+### Why this matters
 Modern abuse detection systems rely on multiple weak signals combined together. This project demonstrates how automated traffic can be detected through browser consistency analysis and protocol anomalies, even without external threat intelligence.
 
-This project demonstrates practical knowledge of:
+This project explores how automated traffic can be indetified using browser consistency validation and protocl anomaly detection. It demonstrates practical familiarity with:
 ```
 HTTP Protocol Behaviour
 Browser fingerprinting techniques
